@@ -4,6 +4,7 @@ import axios from "axios";
 const MovieCast = lazy(() => import("../components/MovieCast"));
 const MovieReviews = lazy(() => import("../components/MovieReviews"));
 import Loader from "../components/Loader";
+import css from "./MovieDetailsPage.module.css"
 
 const defaultImg =
   "https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg";
@@ -38,27 +39,35 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
-      <Link to="/">Go Back</Link>
-      <h1>{title}</h1>
-      <img
-        src={
-          poster_path
-            ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-            : defaultImg
-        }
-        width={250}
-        alt="poster"
-      />
-      <p>Release Date: {release_date}</p>
-      <p>{overview}</p>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
+      <div className={css.goBackBtn}>
+        <Link to="/">Go Back</Link>
+      </div>
+      <h2 className={css.title}>{title}</h2>
+      <div className={css.wrapper}>
+        <img
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+              : defaultImg
+          }
+          width={250}
+          alt="poster"
+        />
+        <div className={css.wrapperText}>
+          <p>Release Date: {release_date}</p>
+          <p>{overview}</p>
+        </div>
+      </div>
+      <div>
+        <ul className={css.filmInfo}>
+          <li className={css.filmInfoItem}>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li className={css.filmInfoItem}>
+            <Link to="reviews">Reviews</Link>
+          </li>
+        </ul>
+      </div>
 
       <Suspense fallback={<Loader />}>
         <Routes>

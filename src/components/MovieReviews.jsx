@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import css from "./MovieReviews.module.css"
 
 const API_KEY = "361693f4a852f8a277166f7371377e89";
 
@@ -24,11 +25,15 @@ const MovieReviews = ({ movieId }) => {
 
   return (
     <div>
-      <ul>
-        {reviews.map((review) => (
-          <li key={review.id}>{review.content}</li>
-        ))}
-      </ul>
+      {reviews.length > 0 ? (
+        <ul className={css.review}>
+          {reviews.map((review) => (
+            <li key={review.id}>{review.content}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>We don`t have any reviews for this movie.</p>
+      )}
     </div>
   );
 };

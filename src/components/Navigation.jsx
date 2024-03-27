@@ -1,21 +1,20 @@
 import { NavLink } from "react-router-dom";
+import css from "./Navigation.module.css"
 
 const Navigation = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/" >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/movies" >
-            Movies
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
+    <header className={css.header}>
+      <nav>
+        <ul className={css.navBtn}>
+          <li className={css.navItemBtn}>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li className={css.navItemBtn}>
+            <NavLink to="/movies">Movies</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 };
 

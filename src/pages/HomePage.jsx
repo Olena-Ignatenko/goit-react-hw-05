@@ -2,6 +2,9 @@ import axios from "axios";
 import MovieList from "../components/MovieList";
 import Loader from "../components/Loader";
 import { useEffect, useState } from "react";
+import css from "./HomePage.module.css"
+
+
 const TOKEN =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNjE2OTNmNGE4NTJmOGEyNzcxNjZmNzM3MTM3N2U4OSIsInN1YiI6IjY1ZmYwYzNmMDQ3MzNmMDE2NGU5YjFlZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kXgZ5m9nP6YrMiJleI5mNHUAPDiUQQSY5BmeKcEjLWU";
 
@@ -34,7 +37,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <h2>Trending Movies</h2>
+      <h1 className={css.homepageTitile} >Trending Movies</h1>
       {loading ? <Loader /> : <MovieList movies={trendingMovies} />}
     </div>
   );

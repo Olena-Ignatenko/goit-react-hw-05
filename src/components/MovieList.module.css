@@ -1,0 +1,58 @@
+.listMovie {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.movieImg {
+  width: 350px;
+  height: 500px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.wrapperMovieText {
+  display: flex;
+  flex-direction: column;
+  background-color: #a0c0f2;
+  gap: 10px;
+  padding: 10px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  align-items: start;
+  justify-content: center;
+  /* width: 350px; */
+  text-align: left;
+  /* height: 100px */
+}
+
+.movieItem {
+  transform: scale(1);
+  transition: transform 250ms linear 0s;
+  max-width: 100%;
+  width: 350px px;
+}
+.movieTitle {
+  color: #0046b6;
+  font-size: 18px;
+  line-height: 1.2;
+  width: 330px;
+  /* display: flex; */
+  /* justify-content: left; */
+  /* align-items: center; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.textDate {
+  color: rgb(247, 247, 250);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
