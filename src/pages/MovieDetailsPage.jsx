@@ -1,5 +1,5 @@
-import { Suspense, lazy, useEffect, useState } from "react";
-import { useParams, Routes, Route, Link } from "react-router-dom";
+import { Suspense, lazy, useEffect, useState, useRef } from "react";
+import { useParams, Routes, Route, Link, Outlet } from "react-router-dom";
 import axios from "axios";
 const MovieCast = lazy(() => import("../components/MovieCast"));
 const MovieReviews = lazy(() => import("../components/MovieReviews"));
@@ -14,6 +14,7 @@ const API_KEY = "361693f4a852f8a277166f7371377e89";
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
+  const locationState = useRef(null);
 
   useEffect(() => {
     // console.log("movieId:", movieId);
@@ -30,6 +31,13 @@ const MovieDetailsPage = () => {
 
     fetchMovieDetails();
   }, [movieId]);
+
+  // Отримання значення location.state через useRef
+  useEffect(() => {
+    if (location.state) {
+      locationState.current = location.state;
+    }
+  }, []);
 
   if (!movieDetails) {
     return <div>Loading...</div>;
@@ -61,10 +69,14 @@ const MovieDetailsPage = () => {
       <div>
         <ul className={css.filmInfo}>
           <li className={css.filmInfoItem}>
-            <Link to="cast">Cast</Link>
+            <Link to="cast" state={{ movieId  }}>
+              Cast
+            </Link>
           </li>
           <li className={css.filmInfoItem}>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" state={{  movieId  }}>
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>
@@ -75,6 +87,7 @@ const MovieDetailsPage = () => {
           <Route path="reviews" element={<MovieReviews movieId={movieId} />} />
         </Routes>
       </Suspense>
+      <Outlet />
     </div>
   );
 };
