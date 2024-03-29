@@ -1,10 +1,11 @@
 import { Suspense, lazy, useEffect, useState, useRef } from "react";
-import { useParams, Routes, Route, Link, Outlet } from "react-router-dom";
+import { useParams, Routes, Route, Link, Outlet, useLocation } from "react-router-dom";
 import axios from "axios";
-const MovieCast = lazy(() => import("../components/MovieCast"));
-const MovieReviews = lazy(() => import("../components/MovieReviews"));
 import Loader from "../components/Loader";
 import css from "./MovieDetailsPage.module.css"
+
+const MovieCast = lazy(() => import("../components/MovieCast"));
+const MovieReviews = lazy(() => import("../components/MovieReviews"));
 
 const defaultImg =
   "https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg";
@@ -14,7 +15,9 @@ const API_KEY = "361693f4a852f8a277166f7371377e89";
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
-  const locationState = useRef(null);
+  // const locationState = useRef(null);
+  const location = useLocation();
+  const goBack = useRef(location?.state?.from ?? "/");
 
   useEffect(() => {
     // console.log("movieId:", movieId);
@@ -33,11 +36,11 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   // Отримання значення location.state через useRef
-  useEffect(() => {
-    if (location.state) {
-      locationState.current = location.state;
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (location.state) {
+  //     locationState.current = location.state;
+  //   }
+  // });
 
   if (!movieDetails) {
     return <div>Loading...</div>;
@@ -48,7 +51,7 @@ const MovieDetailsPage = () => {
   return (
     <div>
       <div className={css.goBackBtn}>
-        <Link to="/">Go Back</Link>
+        <Link to={goBack.current}>Go Back</Link>
       </div>
       <h2 className={css.title}>{title}</h2>
       <div className={css.wrapper}>
@@ -69,12 +72,12 @@ const MovieDetailsPage = () => {
       <div>
         <ul className={css.filmInfo}>
           <li className={css.filmInfoItem}>
-            <Link to="cast" state={{ movieId  }}>
+            <Link to="cast" state={{ movieId }}>
               Cast
             </Link>
           </li>
           <li className={css.filmInfoItem}>
-            <Link to="reviews" state={{  movieId  }}>
+            <Link to="reviews" state={{ movieId }}>
               Reviews
             </Link>
           </li>
