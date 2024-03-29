@@ -1,8 +1,15 @@
 import { Suspense, lazy, useEffect, useState, useRef } from "react";
-import { useParams, Routes, Route, Link, Outlet, useLocation } from "react-router-dom";
+import {
+  useParams,
+  Routes,
+  Route,
+  Link,
+  Outlet,
+  useLocation,
+} from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader";
-import css from "./MovieDetailsPage.module.css"
+import css from "./MovieDetailsPage.module.css";
 
 const MovieCast = lazy(() => import("../components/MovieCast"));
 const MovieReviews = lazy(() => import("../components/MovieReviews"));
@@ -50,8 +57,10 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
-      <div className={css.goBackBtn}>
-        <Link to={goBack.current}>Go Back</Link>
+      <div>
+        <Link className={css.goBackBtn} to={goBack.current}>
+          Go Back
+        </Link>
       </div>
       <h2 className={css.title}>{title}</h2>
       <div className={css.wrapper}>
@@ -71,13 +80,13 @@ const MovieDetailsPage = () => {
       </div>
       <div>
         <ul className={css.filmInfo}>
-          <li className={css.filmInfoItem}>
-            <Link to="cast" state={{ movieId }}>
+          <li >
+            <Link className={css.filmInfoItem} to="cast" state={{ movieId }}>
               Cast
             </Link>
           </li>
-          <li className={css.filmInfoItem}>
-            <Link to="reviews" state={{ movieId }}>
+          <li>
+            <Link className={css.filmInfoItem} to="reviews" state={{ movieId }}>
               Reviews
             </Link>
           </li>
@@ -96,4 +105,3 @@ const MovieDetailsPage = () => {
 };
 
 export default MovieDetailsPage;
-

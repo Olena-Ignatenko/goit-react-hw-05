@@ -19,9 +19,16 @@
     border-radius: 8px;
     background-color: rgb(211, 219, 241);
     width: 85px;
+    cursor: pointer;
+    display: inline-block;
 }
+
 
 .navItemBtn:hover {
     background-color: rgb(34, 94, 215);
     color: #fff;
 }
+
+/* border: 1px solid;
+    padding: 8px 22px;
+    border-radius: 8px; */
